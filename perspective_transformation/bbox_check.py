@@ -20,7 +20,7 @@ def get_bbox_list():
     # Create figure and axes
     fig, ax = plt.subplots()
     # Display the image
-    img = cv2.imread("img1.jpg", cv2.IMREAD_UNCHANGED)
+    img = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
     ax.imshow(img)
     bbox_list = []
     for box in data['predictions']:
@@ -48,7 +48,7 @@ def plot_points(img, points):
         cv2.circle(img, (int(point[0]), int(point[1])), 5, (255, 0, 0), -1)
         cv2.imshow("img_circle", img)
         cv2.waitKey(0)
-    cv2.imwrite("circles_img.png", img)
+    cv2.imwrite("../output_images/circles_img.png", img)
 
 
 def get_rotation_matrix(angle_to_rotate):
@@ -107,7 +107,7 @@ def get_rotated_reference(img, angle_to_rotate):
 
 
 angle_to_rotate = math.pi / 4
-img = cv2.imread("img1.jpg", cv2.IMREAD_UNCHANGED)
+img = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
 h, w, c = img.shape
 points = get_bbox_list()
 rotated_points = rotate_operation(points, angle_to_rotate, h, w)

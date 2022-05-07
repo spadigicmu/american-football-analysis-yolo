@@ -202,13 +202,13 @@ def plot_image_with_lines(img, lines):
 
 
 # image = cv2.imread("img1.jpg", cv2.IMREAD_UNCHANGED)
-image = cv2.imread("img1.jpg", cv2.IMREAD_UNCHANGED)
+image = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
 h, w, c = image.shape
 image1 = image.copy()
 image2 = image.copy()
 
 image_with_lines, angle_to_rotate, lines = get_image_with_lines(image)
-cv2.imwrite("lines.png", image_with_lines)
+cv2.imwrite("../output_images/lines.png", image_with_lines)
 
 most_vertical_angle = get_most_vertical_line(lines)
 
@@ -219,7 +219,7 @@ img_rotated = ndimage.rotate(image2, 180 * angle_to_rotate / math.pi)
 
 img_rotated = cv2.copyMakeBorder(img_rotated, 100, 100, 100, 100,
                                  cv2.BORDER_CONSTANT)
-cv2.imwrite("rotated.png", img_rotated)
+cv2.imwrite("../output_images/rotated.png", img_rotated)
 
 img_rotated_og = img_rotated.copy()
 
@@ -244,7 +244,7 @@ bottom_line = (rho_b, perpendicular_theta)
 # Filter lines to get only the left most and right most lines
 rotated_image_with_lines, angle, vertical_lines = get_image_with_max_lines(
     img_rotated)
-cv2.imwrite("rotated_lines.png", rotated_image_with_lines)
+cv2.imwrite("../output_images/rotated_lines.png", rotated_image_with_lines)
 
 left_line = vertical_lines[0]
 right_line = vertical_lines[1]
@@ -256,7 +256,7 @@ img_rotated_borders = plot_image_with_lines(img_rotated_borders, [left_line,
                                                                   top_line,
                                                                   bottom_line])
 
-cv2.imwrite("four_borders.png", img_rotated_borders)
+cv2.imwrite("../output_images/four_borders.png", img_rotated_borders)
 
 
 x1, y1 = intersection(left_line, top_line)
@@ -273,7 +273,7 @@ cv2.line(img_rotated_tmp, (x4, y4), (x1, y1), (0, 0, 255), 2)
 
 img_rotated_tmp = img_rotated.copy()
 
-cv2.imwrite("trapezium.png", img_rotated_tmp)
+cv2.imwrite("../output_images/trapezium.png", img_rotated_tmp)
 
 pts = np.array([(x1, y1), (x2, y2), (x3, y3), (x4, y4)])
 
@@ -283,7 +283,7 @@ warped = four_point_transform(img_rotated_og, pts)
 
 # print(angle)
 
-cv2.imwrite("warped_image.png", warped)
+cv2.imwrite("../output_images/warped_image.png", warped)
 
 
 
