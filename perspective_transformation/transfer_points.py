@@ -236,7 +236,7 @@ class TransferPoints:
 
         transfer_coords = self.fetch_tranfer_point_coord(bbox_coords, height_ratio, width_ratio, self.template_vertical_gap*2)
 
-        birds_eye_img = self.plot_points(self.template_image, bbox_coords)
+        birds_eye_img = self.plot_points(self.template_image, transfer_coords)
         cv2.imwrite("output_images/birds_eye_img.png", birds_eye_img)
         print(input_image_vertical_gap)
 
