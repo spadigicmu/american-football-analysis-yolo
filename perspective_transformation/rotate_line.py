@@ -124,7 +124,7 @@ def get_image_with_max_lines(image1):
     canimg = cv2.Canny(gray, 50, 200)
     lines = cv2.HoughLines(canimg, 1, np.pi / 180.0, 140, np.array([]))
 
-    print(lines)
+    #print(lines)
 
     # print(lines)
     # lines= cv2.HoughLines(edges, 1, np.pi/180, 80, np.array([]))
@@ -156,10 +156,10 @@ def get_image_with_max_lines(image1):
     for line in lines:
         rho, theta = line[0]
         degree_theta = get_angle_degree(theta)
-        # print(rho + " : " + get_angle_degree(theta))
+        #print("degree theta(theta) ", degree_theta, theta, "rho: ", rho)
 
         # Only include lines that are more vertical than horizontal
-        if (135 <= degree_theta <= 180) or (0 <= degree_theta <= 45):
+        if (155 <= degree_theta <= 180) or (0 <= degree_theta <= 35):
             # degree_lines.append((rho, theta))
 
             if min_rho is None:
@@ -169,13 +169,14 @@ def get_image_with_max_lines(image1):
                 min_rho = rho
                 right_most_line = (min_rho, theta)
 
-            if max_rho is None:
+            if max_rho is None and rho > 0:
                 max_rho = rho
                 left_most_line = (max_rho, theta)
-            elif rho > max_rho:
+            elif rho > 0 and rho < max_rho :
                 max_rho = rho
                 left_most_line = (max_rho, theta)
 
+    print("Outputing: ", left_most_line, right_most_line)
     degree_lines.append(left_most_line)
     # degree_lines.append((left_most_line[0] + 20, left_most_line[1] + math.pi/2))
     degree_lines.append(right_most_line)
@@ -215,7 +216,8 @@ most_vertical_angle = get_most_vertical_line(lines)
 # print("angle to rotate", angle_to_rotate)
 # print(rho)
 # Rotate image by specified angle
-img_rotated = ndimage.rotate(image2, 180 * angle_to_rotate / math.pi)
+rotate_angle_degree = 180 * angle_to_rotate / math.pi
+img_rotated = ndimage.rotate(image2, rotate_angle_degree)
 
 img_rotated = cv2.copyMakeBorder(img_rotated, 100, 100, 100, 100,
                                  cv2.BORDER_CONSTANT)
@@ -228,9 +230,18 @@ top_most_point, bottom_most_point = get_vertical_extremes(w, h, final_w,
                                                           final_h,
                                                           angle_to_rotate)
 
-# perpendicular_theta = angle_to_rotate + most_vertical_angle + math.pi / 2
+print("most vertical angle, angle to rotate: ",most_vertical_angle*180/math.pi,  rotate_angle_degree)
 
-perpendicular_theta = most_vertical_angle - angle_to_rotate + math.pi / 2
+residual_angle = most_vertical_angle - angle_to_rotate 
+
+print("residual angle: ", residual_angle*180/math.pi)
+
+
+# works for left oriented angles 
+if (most_vertical_angle*180 / math.pi > 45):
+    perpendicular_theta = residual_angle + math.pi
+else:
+    perpendicular_theta = residual_angle + math.pi/2
 
 rho_t = get_rho(top_most_point, perpendicular_theta)
 rho_b = get_rho(bottom_most_point, perpendicular_theta)
