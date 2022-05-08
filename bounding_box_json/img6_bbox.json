@@ -1,0 +1,116 @@
+{
+  "predictions": [
+    {
+      "x": 574.5,
+      "y": 876,
+      "width": 41,
+      "height": 120,
+      "class": "DB",
+      "confidence": 0.817
+    },
+    {
+      "x": 748,
+      "y": 311.5,
+      "width": 46,
+      "height": 97,
+      "class": "SKILL",
+      "confidence": 0.788
+    },
+    {
+      "x": 300,
+      "y": 622.5,
+      "width": 46,
+      "height": 111,
+      "class": "SKILL",
+      "confidence": 0.783
+    },
+    {
+      "x": 909,
+      "y": 659,
+      "width": 46,
+      "height": 120,
+      "class": "LB",
+      "confidence": 0.779
+    },
+    {
+      "x": 955.5,
+      "y": 334,
+      "width": 37,
+      "height": 116,
+      "class": "DB",
+      "confidence": 0.768
+    },
+    {
+      "x": 1281,
+      "y": 768,
+      "width": 32,
+      "height": 134,
+      "class": "DB",
+      "confidence": 0.754
+    },
+    {
+      "x": 438.5,
+      "y": 858,
+      "width": 65,
+      "height": 102,
+      "class": "SKILL",
+      "confidence": 0.733
+    },
+    {
+      "x": 833,
+      "y": 71,
+      "width": 32,
+      "height": 88,
+      "class": "DB",
+      "confidence": 0.724
+    },
+    {
+      "x": 1350,
+      "y": 376,
+      "width": 42,
+      "height": 106,
+      "class": "DB",
+      "confidence": 0.673
+    },
+    {
+      "x": 1216,
+      "y": 172.5,
+      "width": 32,
+      "height": 115,
+      "class": "DB",
+      "confidence": 0.655
+    },
+    {
+      "x": 367,
+      "y": 516.5,
+      "width": 50,
+      "height": 147,
+      "class": "QB",
+      "confidence": 0.649
+    },
+    {
+      "x": 616.5,
+      "y": 572,
+      "width": 51,
+      "height": 92,
+      "class": "CENTER",
+      "confidence": 0.607
+    },
+    {
+      "x": 969,
+      "y": 567,
+      "width": 46,
+      "height": 120,
+      "class": "LB",
+      "confidence": 0.59
+    },
+    {
+      "x": 833,
+      "y": 71,
+      "width": 42,
+      "height": 88,
+      "class": "SKILL",
+      "confidence": 0.426
+    }
+  ]
+}

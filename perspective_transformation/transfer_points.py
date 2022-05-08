@@ -17,9 +17,10 @@
 # and template
 
 # now we have the transformed coordinates required for the plotting on template
+import copy
 
 import cv2
-from scipy import ndimage
+import json
 import math
 import numpy as np
 
@@ -68,7 +69,8 @@ class TransferPoints:
         gray = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
         edges = cv2.Canny(gray, 50, 150, apertureSize=3)
         canimg = cv2.Canny(gray, 50, 200)
-        lines = cv2.HoughLines(canimg, 1, np.pi / 180.0, vote_threshold, np.array([]))
+        lines = cv2.HoughLines(canimg, 1, np.pi / 180.0, vote_threshold,
+                               np.array([]))
         # print(lines)
         # lines= cv2.HoughLines(edges, 1, np.pi/180, 80, np.array([]))
         angle_to_rotate = 0
@@ -106,8 +108,8 @@ class TransferPoints:
             # cv2.waitKey(0)
             cartesian_lines.append((x1, y1, x2, y2))
 
-        cv2.imshow("Image with lines", image1)
-        cv2.waitKey(0)
+        # cv2.imshow("Image with lines", image1)
+        # cv2.waitKey(0)
         # return image1, angle_to_rotate, lines
         return lines
 
@@ -134,7 +136,7 @@ class TransferPoints:
             # print("degree theta(theta) ", degree_theta, theta, "rho: ", rho)
 
             # Only include lines that are more vertical than horizontal
-            if (80 <= degree_theta <= 100): #or (0 <= degree_theta <= 10):
+            if (80 <= degree_theta <= 100):  # or (0 <= degree_theta <= 10):
                 horizontal_lines.append(line)
 
         return horizontal_lines
@@ -151,7 +153,7 @@ class TransferPoints:
         differences = []
 
         for i in range(1, len(val_arr)):
-            differences.append(val_arr[i] - val_arr[i-1])
+            differences.append(val_arr[i] - val_arr[i - 1])
 
         avg_diff = sum(differences) / len(differences)
         return avg_diff
@@ -175,7 +177,7 @@ class TransferPoints:
         # pass
 
     def fetch_avg_horizontal_line_dist(self, lines, img_height):
-        """
+
         horizontal_lines = self.filter_horizontal_lines(lines)
 
         diff_x = []
@@ -191,34 +193,58 @@ class TransferPoints:
         avg_gap = self.get_avg_diff(diff_x)
 
         return avg_gap
-        """
-        return img_height
 
-    def fetch_tranfer_point_coord(self, current_points, height_ratio, width_ratio):
-        pass
+        # return img_height
 
-    def transfer_points(self, input_img_path):
+    def fetch_tranfer_point_coord(self, bbox_coords, height_ratio,
+                                  width_ratio, x_offset):
+
+        current_points = copy.deepcopy(bbox_coords)
+        for entry in range(len(current_points['predictions'])):
+            current_points['predictions'][entry]['x'] = x_offset + current_points['predictions'][entry]['x'] * width_ratio
+            current_points['predictions'][entry]['y'] = current_points['predictions'][entry]['y'] * height_ratio
+
+        return current_points
+
+    def plot_points(self, input_img, points):
+        img = input_img.copy()
+        for point in points['predictions']:
+            cv2.circle(img, (int(point['x']), int(point['y'])), 5, (255, 0, 0), -1)
+            # cv2.imshow("img_circle", img)
+            # cv2.waitKey(0)
+
+        return img
+
+    def transfer_points(self, input_img_path, bbox_file):
 
         input_image = cv2.imread(input_img_path, cv2.IMREAD_UNCHANGED)
         input_image_height, input_image_width = \
             self.fetch_image_dim(input_image)
 
-        input_image_lines = self.fetch_image_lines(input_image, vote_threshold=140)
+        input_image_lines = self.fetch_image_lines(input_image,
+                                                   vote_threshold=140)
 
         input_image_vertical_gap = self.fetch_avg_vertical_line_dist(
             input_image_lines, input_image_width)
         input_image_horizontal_gap = self.fetch_avg_horizontal_line_dist(
             input_image_lines, input_image_height)
 
-        height_ratio = self.template_horizontal_gap/input_image_horizontal_gap
-        width_ratio = self.template_vertical_gap/input_image_vertical_gap
+        height_ratio = self.template_horizontal_gap / input_image_horizontal_gap
+        width_ratio = self.template_vertical_gap / input_image_vertical_gap
 
+        bbox_coords = json.load(open(bbox_file))
 
+        transfer_coords = self.fetch_tranfer_point_coord(bbox_coords, height_ratio, width_ratio, self.template_vertical_gap*2)
+
+        birds_eye_img = self.plot_points(self.template_image, bbox_coords)
+        cv2.imwrite("output_images/birds_eye_img.png", birds_eye_img)
         print(input_image_vertical_gap)
 
 
 if __name__ == "__main__":
     transfer_points = TransferPoints('input_images/birds_eye_view_field.png')
-    transfer_points.transfer_points('output_images/warped_image.png')
+    transfer_points.transfer_points('output_images/warped_image.png',
+                                    'perspective_transformation/'
+                                    'rotated_bbox.json')
 
     # transfer_points.fetch_image_dim()

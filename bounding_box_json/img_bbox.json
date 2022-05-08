@@ -1,0 +1,124 @@
+{
+  "predictions": [
+    {
+      "x": 282,
+      "y": 344,
+      "width": 16,
+      "height": 36,
+      "class": "SKILL",
+      "confidence": 0.831
+    },
+    {
+      "x": 287,
+      "y": 226,
+      "width": 10,
+      "height": 32,
+      "class": "SKILL",
+      "confidence": 0.819
+    },
+    {
+      "x": 217.5,
+      "y": 116,
+      "width": 13,
+      "height": 30,
+      "class": "SKILL",
+      "confidence": 0.793
+    },
+    {
+      "x": 219,
+      "y": 153.5,
+      "width": 12,
+      "height": 31,
+      "class": "SKILL",
+      "confidence": 0.775
+    },
+    {
+      "x": 201,
+      "y": 65,
+      "width": 12,
+      "height": 30,
+      "class": "SKILL",
+      "confidence": 0.766
+    },
+    {
+      "x": 97.5,
+      "y": 140,
+      "width": 7,
+      "height": 34,
+      "class": "DB",
+      "confidence": 0.744
+    },
+    {
+      "x": 188,
+      "y": 118,
+      "width": 8,
+      "height": 30,
+      "class": "LB",
+      "confidence": 0.701
+    },
+    {
+      "x": 248,
+      "y": 350.5,
+      "width": 10,
+      "height": 43,
+      "class": "DB",
+      "confidence": 0.576
+    },
+    {
+      "x": 129.5,
+      "y": 292.5,
+      "width": 9,
+      "height": 43,
+      "class": "DB",
+      "confidence": 0.517
+    },
+    {
+      "x": 231.5,
+      "y": 217,
+      "width": 11,
+      "height": 28,
+      "class": "CENTER",
+      "confidence": 0.477
+    },
+    {
+      "x": 179.5,
+      "y": 196.5,
+      "width": 7,
+      "height": 37,
+      "class": "LB",
+      "confidence": 0.461
+    },
+    {
+      "x": 282.5,
+      "y": 193.5,
+      "width": 9,
+      "height": 33,
+      "class": "QB",
+      "confidence": 0.452
+    },
+    {
+      "x": 188,
+      "y": 118,
+      "width": 8,
+      "height": 30,
+      "class": "DB",
+      "confidence": 0.447
+    },
+    {
+      "x": 172.5,
+      "y": 66,
+      "width": 7,
+      "height": 38,
+      "class": "DB",
+      "confidence": 0.426
+    },
+    {
+      "x": 196,
+      "y": 268,
+      "width": 10,
+      "height": 38,
+      "class": "LB",
+      "confidence": 0.41
+    }
+  ]
+}

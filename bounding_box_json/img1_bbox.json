@@ -1,0 +1,140 @@
+{
+  "predictions": [
+    {
+      "x": 34.5,
+      "y": 335.5,
+      "width": 21,
+      "height": 57,
+      "class": "SKILL",
+      "confidence": 0.786
+    },
+    {
+      "x": 388,
+      "y": 200.5,
+      "width": 8,
+      "height": 55,
+      "class": "DB",
+      "confidence": 0.76
+    },
+    {
+      "x": 134.5,
+      "y": 122.5,
+      "width": 13,
+      "height": 53,
+      "class": "SKILL",
+      "confidence": 0.752
+    },
+    {
+      "x": 161.5,
+      "y": 31,
+      "width": 13,
+      "height": 48,
+      "class": "SKILL",
+      "confidence": 0.751
+    },
+    {
+      "x": 143,
+      "y": 82.5,
+      "width": 14,
+      "height": 51,
+      "class": "SKILL",
+      "confidence": 0.747
+    },
+    {
+      "x": 174,
+      "y": 221.5,
+      "width": 14,
+      "height": 49,
+      "class": "LB",
+      "confidence": 0.671
+    },
+    {
+      "x": 126.5,
+      "y": 353.5,
+      "width": 15,
+      "height": 53,
+      "class": "DB",
+      "confidence": 0.67
+    },
+    {
+      "x": 212.5,
+      "y": 108.5,
+      "width": 9,
+      "height": 45,
+      "class": "DB",
+      "confidence": 0.65
+    },
+    {
+      "x": 32.5,
+      "y": 198,
+      "width": 11,
+      "height": 52,
+      "class": "SKILL",
+      "confidence": 0.581
+    },
+    {
+      "x": 336.5,
+      "y": 130.5,
+      "width": 9,
+      "height": 51,
+      "class": "DB",
+      "confidence": 0.577
+    },
+    {
+      "x": 109,
+      "y": 202,
+      "width": 14,
+      "height": 36,
+      "class": "CENTER",
+      "confidence": 0.522
+    },
+    {
+      "x": 276,
+      "y": 43,
+      "width": 8,
+      "height": 46,
+      "class": "DB",
+      "confidence": 0.452
+    },
+    {
+      "x": 32.5,
+      "y": 197.5,
+      "width": 11,
+      "height": 55,
+      "class": "QB",
+      "confidence": 0.447
+    },
+    {
+      "x": 41.5,
+      "y": 177.5,
+      "width": 9,
+      "height": 45,
+      "class": "SKILL",
+      "confidence": 0.444
+    },
+    {
+      "x": 41,
+      "y": 187,
+      "width": 10,
+      "height": 54,
+      "class": "QB",
+      "confidence": 0.443
+    },
+    {
+      "x": 212.5,
+      "y": 109.5,
+      "width": 9,
+      "height": 45,
+      "class": "LB",
+      "confidence": 0.432
+    },
+    {
+      "x": 213.5,
+      "y": 164.5,
+      "width": 13,
+      "height": 51,
+      "class": "LB",
+      "confidence": 0.431
+    }
+  ]
+}

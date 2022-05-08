@@ -1,0 +1,100 @@
+{
+  "predictions": [
+    {
+      "x": 182.5,
+      "y": 217,
+      "width": 13,
+      "height": 40,
+      "class": "SKILL",
+      "confidence": 0.822
+    },
+    {
+      "x": 155.5,
+      "y": 263,
+      "width": 13,
+      "height": 40,
+      "class": "SKILL",
+      "confidence": 0.702
+    },
+    {
+      "x": 150.5,
+      "y": 130,
+      "width": 9,
+      "height": 36,
+      "class": "SKILL",
+      "confidence": 0.685
+    },
+    {
+      "x": 235,
+      "y": 253.5,
+      "width": 8,
+      "height": 37,
+      "class": "DB",
+      "confidence": 0.63
+    },
+    {
+      "x": 202,
+      "y": 160,
+      "width": 12,
+      "height": 28,
+      "class": "CENTER",
+      "confidence": 0.609
+    },
+    {
+      "x": 291.5,
+      "y": 189,
+      "width": 11,
+      "height": 36,
+      "class": "DB",
+      "confidence": 0.523
+    },
+    {
+      "x": 137,
+      "y": 333,
+      "width": 18,
+      "height": 50,
+      "class": "SKILL",
+      "confidence": 0.499
+    },
+    {
+      "x": 290,
+      "y": 97,
+      "width": 10,
+      "height": 40,
+      "class": "DB",
+      "confidence": 0.489
+    },
+    {
+      "x": 141,
+      "y": 135.5,
+      "width": 8,
+      "height": 35,
+      "class": "SKILL",
+      "confidence": 0.485
+    },
+    {
+      "x": 204.5,
+      "y": 102,
+      "width": 9,
+      "height": 30,
+      "class": "SKILL",
+      "confidence": 0.434
+    },
+    {
+      "x": 141,
+      "y": 140,
+      "width": 10,
+      "height": 40,
+      "class": "QB",
+      "confidence": 0.431
+    },
+    {
+      "x": 230,
+      "y": 293,
+      "width": 10,
+      "height": 46,
+      "class": "DB",
+      "confidence": 0.401
+    }
+  ]
+}
