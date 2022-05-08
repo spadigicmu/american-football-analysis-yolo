@@ -68,16 +68,20 @@ def rotate_operation(points, angle_to_rotate, h, w):
 
     # The rotation on image is done using scipy.ndimage.rotate which pivots the image at the center
     # But doing the rotation using a rotation matrix pivots it at the top left corner (old_origin).
-    # 1. We compute the translation of the old origin with respect to the image center
-    # 2. We rotate the image using the top left corner as pivot
-    # 3. Now the new positions of all points need to be translated by the amount the old_origin moved
-    old_origin = np.array([-big_img_w / 2, -big_img_h / 2])
-    new_origin = apply_matrix_operation(rotation_matrix, [old_origin])
-    movement = new_origin[0] - old_origin
+    # 1. We move the center of the image to the origin by subtracting (w/2, h/2) from all points
+    # 2. We perform rotation using the origin (old center) as the pivot
+    # 3. We reset the origin by adding (w/2, h/2) to all the points
 
-    rotated_points = apply_matrix_operation(rotation_matrix, points)
-    r_t_points = translate_operation(rotated_points, movement[0], movement[1])
-    return r_t_points
+
+    points_translated = translate_operation(points, -w/2, -h/2)
+
+    rotated_points = apply_matrix_operation(rotation_matrix, points_translated)
+    
+    new_points = translate_operation(rotated_points, big_img_w/2, big_img_h/2)
+
+    return new_points
+    
+
 
 
 def translate_operation(points, x_t, y_t):
@@ -114,5 +118,5 @@ rotated_points = rotate_operation(points, angle_to_rotate, h, w)
 # translated_points = translate_operation(rotated_points, 100, 100)
 
 # rotated_img = cv2.imread("rotated_sample.png", cv2.IMREAD_UNCHANGED)
-rotated_img = get_rotated_reference(img, 0)
+rotated_img = get_rotated_reference(img, angle_to_rotate)
 plot_points(rotated_img, rotated_points)
