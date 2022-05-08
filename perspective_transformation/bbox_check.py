@@ -8,9 +8,9 @@ import numpy as np
 from scipy import ndimage
 
 
-def get_bbox_list():
+def get_bbox_list(filename = '../bounding_box_json/img_bbox.json'):
     # Opening JSON file
-    f = open('bbox.json')
+    f = open(filename)
 
     # returns JSON object as
     # a dictionary
@@ -43,12 +43,13 @@ def get_bbox_list():
     return bbox_list
 
 
-def plot_points(img, points):
+def plot_points(img, points, filename=None):
     for point in points:
         cv2.circle(img, (int(point[0]), int(point[1])), 5, (255, 0, 0), -1)
-        cv2.imshow("img_circle", img)
-        cv2.waitKey(0)
-    cv2.imwrite("../output_images/circles_img.png", img)
+    cv2.imshow("img_circle", img)
+    cv2.waitKey(0)
+    if filename is not None:
+        cv2.imwrite(filename, img)
 
 
 def get_rotation_matrix(angle_to_rotate):
@@ -110,27 +111,33 @@ def get_rotated_reference(img, angle_to_rotate):
     return img_rotated
 
 
-def write_to_json(points_info, filepath):
+def write_to_json(points_info, out_file, inp_file = '../bounding_box_json/img_bbox.json'):
 
-    og_json = json.load(open('bbox.json'))
+    og_json = json.load(open(inp_file))
     # Writing to sample.json
     for entry in range(len(og_json['predictions'])):
         og_json['predictions'][entry]['x'] = points_info[entry][0]
         og_json['predictions'][entry]['y'] = points_info[entry][1]
 
     json_object = json.dumps(og_json, indent=4)
-    with open(filepath, "w") as outfile:
+    with open(out_file, "w") as outfile:
         outfile.write(json_object)
 
 
-angle_to_rotate = math.pi / 4
-img = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
-h, w, c = img.shape
-points = get_bbox_list()
-rotated_points = rotate_operation(points, angle_to_rotate, h, w)
-# translated_points = translate_operation(rotated_points, 100, 100)
-write_to_json(rotated_points, "rotated_bbox.json")
-# rotated_img = cv2.imread("rotated_sample.png", cv2.IMREAD_UNCHANGED)
-rotated_img = get_rotated_reference(img, angle_to_rotate)
+def get_points_after_rotation(img, angle_to_rotate, points):
+    h, w, _ = img.shape
+    rotated_points = rotate_operation(points, angle_to_rotate, h, w)
+    return rotated_points
+    
+if __name__ == '__main__':
+    angle_to_rotate = math.pi / 4
+    img = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
+    points = get_bbox_list()
+    rotated_points = get_points_after_rotation(img, angle_to_rotate, points)
 
-plot_points(rotated_img, rotated_points)
+    # translated_points = translate_operation(rotated_points, 100, 100)
+    write_to_json(rotated_points, "rotated_bbox.json")
+    # rotated_img = cv2.imread("rotated_sample.png", cv2.IMREAD_UNCHANGED)
+    rotated_img = get_rotated_reference(img, angle_to_rotate)
+
+    plot_points(rotated_img, rotated_points, "../output_images/circles_img.png")

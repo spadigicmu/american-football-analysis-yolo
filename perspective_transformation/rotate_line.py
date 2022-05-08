@@ -2,8 +2,10 @@ import numpy as np
 import cv2
 from scipy import ndimage
 import math
+from transform import get_warped_points
 
 from transform import four_point_transform
+from bbox_check import *
 
 
 def get_image_with_lines(image1):
@@ -204,6 +206,7 @@ def plot_image_with_lines(img, lines):
 
 # image = cv2.imread("img1.jpg", cv2.IMREAD_UNCHANGED)
 image = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
+bbox_file = '../bounding_box_json/img1_bbox.json'
 h, w, c = image.shape
 image1 = image.copy()
 image2 = image.copy()
@@ -219,8 +222,14 @@ most_vertical_angle = get_most_vertical_line(lines)
 rotate_angle_degree = 180 * angle_to_rotate / math.pi
 img_rotated = ndimage.rotate(image2, rotate_angle_degree)
 
+player_positions = get_bbox_list(bbox_file)
+player_positions_after_rotation = get_points_after_rotation(image2, angle_to_rotate, player_positions)
+
 img_rotated = cv2.copyMakeBorder(img_rotated, 100, 100, 100, 100,
                                  cv2.BORDER_CONSTANT)
+player_positions_after_padding = translate_operation(player_positions_after_rotation, 100, 100)
+plot_points(img_rotated, player_positions_after_padding)
+
 cv2.imwrite("../output_images/rotated.png", img_rotated)
 
 img_rotated_og = img_rotated.copy()
@@ -289,9 +298,13 @@ cv2.imwrite("../output_images/trapezium.png", img_rotated_tmp)
 pts = np.array([(x1, y1), (x2, y2), (x3, y3), (x4, y4)])
 
 # print(pts)
+print("img_rotated_og:", img_rotated_og)
+print("pts:", pts)
+warped, M = four_point_transform(img_rotated_og, pts)
 
-warped = four_point_transform(img_rotated_og, pts)
-
+warped_player_positions = get_warped_points(M, player_positions_after_padding)
+plot_points(warped, warped_player_positions)
+write_to_json(warped_player_positions, 'warped_output_points.json', bbox_file)
 # print(angle)
 
 cv2.imwrite("../output_images/warped_image.png", warped)

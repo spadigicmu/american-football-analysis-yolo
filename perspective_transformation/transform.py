@@ -26,6 +26,14 @@ def order_points(pts):
     # return the ordered coordinates
     return rect
 
+def get_warped_points(M, points):
+    warped_points = []
+    for point in points:
+        point_z = np.append(point, 1)
+        warped_point = np.array([np.dot(M[0], point_z) / np.dot(M[2], point_z), np.dot(M[1], point_z) / np.dot(M[2], point_z)])
+        warped_points.append(warped_point)
+
+    return warped_points
 
 def four_point_transform(image, pts):
     # obtain a consistent order of the points and unpack them
@@ -64,4 +72,4 @@ def four_point_transform(image, pts):
     warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
 
     # return the warped image
-    return warped
+    return warped, M
