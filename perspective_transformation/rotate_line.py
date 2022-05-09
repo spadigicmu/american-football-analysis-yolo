@@ -232,7 +232,8 @@ player_positions_after_rotation = get_points_after_rotation(image2, angle_to_rot
 img_rotated = cv2.copyMakeBorder(img_rotated, 100, 100, 100, 100,
                                  cv2.BORDER_CONSTANT)
 player_positions_after_padding = translate_operation(player_positions_after_rotation, 100, 100)
-plot_points(img_rotated, player_positions_after_padding)
+# plot_points(img_rotated, player_positions_after_padding)
+plot_points_colored(img_rotated, player_positions_after_padding, bbox_file)
 
 cv2.imwrite("../output_images/rotated.png", img_rotated)
 
@@ -307,7 +308,8 @@ print("pts:", pts)
 warped, M = four_point_transform(img_rotated_og, pts)
 
 warped_player_positions = get_warped_points(M, player_positions_after_padding)
-plot_points(warped, warped_player_positions)
+# plot_points(warped, warped_player_positions)
+plot_points_colored(warped, warped_player_positions, bbox_file)
 write_to_json(warped_player_positions, "../bounding_box_with_team_warped/" +
               bbox_file, bbox_file)
 # print(angle)

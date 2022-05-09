@@ -52,6 +52,35 @@ def plot_points(img, points, filename=None):
         cv2.imwrite(filename, img)
 
 
+def plot_points_colored(img, points, bbox_inp_file, output_filename=None):
+    team_info = []
+    bbox_inp_data = json.load(open(bbox_inp_file))
+    for player_info in bbox_inp_data['predictions']:
+        if player_info['class'] == 'QB':
+            team_info.append('qb')
+        elif player_info['team'] == 0:
+            team_info.append('off')
+        elif player_info['team'] == 1:
+            team_info.append('def')
+        else:
+            print("Missing team info")
+
+    for point_ind in range(len(points)):
+        point = points[point_ind]
+        if team_info[point_ind] == 'qb':
+            point_color = (0, 255, 255)
+        elif team_info[point_ind] == 'off':
+            point_color = (255, 0, 0)
+        elif team_info[point_ind] == 'def':
+            point_color = (0,0,255)
+
+        cv2.circle(img, (int(point[0]), int(point[1])), 5, point_color, -1)
+    cv2.imshow("img_circle", img)
+    cv2.waitKey(0)
+    if output_filename is not None:
+        cv2.imwrite(output_filename, img)
+
+
 def get_rotation_matrix(angle_to_rotate):
     n = np.array([[math.cos(angle_to_rotate), math.sin(angle_to_rotate)],
                   [-math.sin(angle_to_rotate), math.cos(angle_to_rotate)]])
@@ -128,7 +157,8 @@ def get_points_after_rotation(img, angle_to_rotate, points):
     h, w, _ = img.shape
     rotated_points = rotate_operation(points, angle_to_rotate, h, w)
     return rotated_points
-    
+
+"""    
 if __name__ == '__main__':
     angle_to_rotate = math.pi / 4
     img = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
@@ -141,3 +171,4 @@ if __name__ == '__main__':
     rotated_img = get_rotated_reference(img, angle_to_rotate)
 
     plot_points(rotated_img, rotated_points, "../output_images/circles_img.png")
+"""
