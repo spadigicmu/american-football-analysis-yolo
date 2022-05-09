@@ -205,8 +205,12 @@ def plot_image_with_lines(img, lines):
 
 
 # image = cv2.imread("img1.jpg", cv2.IMREAD_UNCHANGED)
-image = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
-bbox_file = '../bounding_box_json/img1_bbox.json'
+img_name = 'img_l1.jpg'
+bbox_file_name = 'img_l1_bbox.json'
+
+image = cv2.imread("../input_images/" + img_name, cv2.IMREAD_UNCHANGED)
+bbox_file = '../bounding_box_with_team/' + bbox_file_name
+
 h, w, c = image.shape
 image1 = image.copy()
 image2 = image.copy()
@@ -304,10 +308,11 @@ warped, M = four_point_transform(img_rotated_og, pts)
 
 warped_player_positions = get_warped_points(M, player_positions_after_padding)
 plot_points(warped, warped_player_positions)
-write_to_json(warped_player_positions, 'warped_output_points.json', bbox_file)
+write_to_json(warped_player_positions, "../bounding_box_with_team_warped/" +
+              bbox_file, bbox_file)
 # print(angle)
 
-cv2.imwrite("../output_images/warped_image.png", warped)
+cv2.imwrite("../warped_images/" + img_name, warped)
 
 
 
