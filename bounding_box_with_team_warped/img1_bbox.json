@@ -113,7 +113,7 @@
             "y": 325.0955518812273,
             "width": 11,
             "height": 55,
-            "class": "QB",
+            "class": "SKILL",
             "confidence": 0.447,
             "team": 0
         },
@@ -134,15 +134,6 @@
             "class": "QB",
             "confidence": 0.443,
             "team": 0
-        },
-        {
-            "x": 193.9278258310433,
-            "y": 193.81937109940546,
-            "width": 9,
-            "height": 45,
-            "class": "LB",
-            "confidence": 0.432,
-            "team": 1
         },
         {
             "x": 219.9534125875539,

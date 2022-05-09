@@ -223,7 +223,24 @@ class TransferPoints:
 
         return img
 
-    def transfer_points(self, input_img_path, bbox_file):
+    def plot_points_colored(self, input_img, points):
+        img = input_img.copy()
+        for point in points['predictions']:
+            if point['class'] == 'QB':
+                point_color = (0, 255, 255)
+            elif point['team'] == 0:
+                point_color = (255, 0, 0)
+            elif point['team'] == 1:
+                point_color = (0, 0, 255)
+
+            cv2.circle(img, (int(point['x']), int(point['y'])), 5, point_color,
+                       -1)
+            # cv2.imshow("img_circle", img)
+            # cv2.waitKey(0)
+
+        return img
+
+    def transfer_points(self, input_img_path, bbox_file, output_path):
 
         input_image = cv2.imread(input_img_path, cv2.IMREAD_UNCHANGED)
         input_image_height, input_image_width = \
@@ -248,15 +265,18 @@ class TransferPoints:
                                                          width_ratio,
                                                          self.template_vertical_gap * 2)
 
-        birds_eye_img = self.plot_points(self.template_image, transfer_coords)
-        cv2.imwrite("output_images/birds_eye_img.png", birds_eye_img)
+        # birds_eye_img = self.plot_points(self.template_image, transfer_coords)
+        birds_eye_img = self.plot_points_colored(self.template_image,
+                                                 transfer_coords)
+        cv2.imwrite(output_path, birds_eye_img)
         print(input_image_vertical_gap)
 
 
 if __name__ == "__main__":
     transfer_points = TransferPoints('input_images/birds_eye_view_field.png')
-    transfer_points.transfer_points('output_images/warped_image.png',
-                                    'perspective_transformation/'
-                                    'warped_output_points.json')
+    transfer_points.transfer_points('warped_images/img6.jpg',
+                                    'bounding_box_with_team_warped/'
+                                    'img6_bbox.json',
+                                    'birds_eye_view_grid_images/img6.jpg')
 
     # transfer_points.fetch_image_dim()

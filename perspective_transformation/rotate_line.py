@@ -205,8 +205,8 @@ def plot_image_with_lines(img, lines):
 
 
 # image = cv2.imread("img1.jpg", cv2.IMREAD_UNCHANGED)
-img_name = 'img_l1.jpg'
-bbox_file_name = 'img_l1_bbox.json'
+img_name = 'img6.jpg'
+bbox_file_name = 'img6_bbox.json'
 
 image = cv2.imread("../input_images/" + img_name, cv2.IMREAD_UNCHANGED)
 bbox_file = '../bounding_box_with_team/' + bbox_file_name
