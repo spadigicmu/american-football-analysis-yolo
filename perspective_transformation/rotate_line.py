@@ -205,8 +205,8 @@ def plot_image_with_lines(img, lines):
 
 
 # image = cv2.imread("img1.jpg", cv2.IMREAD_UNCHANGED)
-img_name = 'img6.jpg'
-bbox_file_name = 'img6_bbox.json'
+img_name = 'img3.jpg'
+bbox_file_name = 'img3_bbox.json'
 
 image = cv2.imread("../input_images/" + img_name, cv2.IMREAD_UNCHANGED)
 bbox_file = '../bounding_box_with_team/' + bbox_file_name
@@ -227,13 +227,20 @@ rotate_angle_degree = 180 * angle_to_rotate / math.pi
 img_rotated = ndimage.rotate(image2, rotate_angle_degree)
 
 player_positions = get_bbox_list(bbox_file)
-player_positions_after_rotation = get_points_after_rotation(image2, angle_to_rotate, player_positions)
+
+plot_points_colored(image1, player_positions, bbox_file, "../team_coded/" +
+                    img_name)
+
+player_positions_after_rotation = get_points_after_rotation(
+    image2, angle_to_rotate, player_positions)
 
 img_rotated = cv2.copyMakeBorder(img_rotated, 100, 100, 100, 100,
                                  cv2.BORDER_CONSTANT)
-player_positions_after_padding = translate_operation(player_positions_after_rotation, 100, 100)
+player_positions_after_padding = translate_operation(
+    player_positions_after_rotation, 100, 100)
 # plot_points(img_rotated, player_positions_after_padding)
-plot_points_colored(img_rotated, player_positions_after_padding, bbox_file)
+plot_points_colored(img_rotated, player_positions_after_padding, bbox_file,
+                    "../after_rotation/" + img_name)
 
 cv2.imwrite("../output_images/rotated.png", img_rotated)
 
@@ -244,7 +251,8 @@ top_most_point, bottom_most_point = get_vertical_extremes(w, h, final_w,
                                                           final_h,
                                                           angle_to_rotate)
 
-print("most vertical angle, angle to rotate: ",most_vertical_angle*180/math.pi,  rotate_angle_degree)
+print("most vertical angle, angle to rotate: ", most_vertical_angle*180/math.pi
+      , rotate_angle_degree)
 
 residual_angle = most_vertical_angle - angle_to_rotate 
 
