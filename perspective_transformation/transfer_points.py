@@ -122,7 +122,7 @@ class TransferPoints:
             # print("degree theta(theta) ", degree_theta, theta, "rho: ", rho)
 
             # Only include lines that are more vertical than horizontal
-            if (170 <= degree_theta <= 180) or (0 <= degree_theta <= 10):
+            if (160 <= degree_theta <= 180) or (0 <= degree_theta <= 20):
                 vertical_lines.append(line)
 
         return vertical_lines
@@ -155,18 +155,25 @@ class TransferPoints:
         for i in range(1, len(val_arr)):
             differences.append(val_arr[i] - val_arr[i - 1])
 
-        avg_diff = sum(differences) / len(differences)
+        # mean
+        # avg_diff = sum(differences) / len(differences)
+        # min and max dint work
+        differences = sorted(differences)
+        print(differences)
+        # median
+        avg_diff = differences[len(differences)//2]
         return avg_diff
 
     def fetch_avg_vertical_line_dist(self, lines, img_width):
         vertical_lines = self.filter_vertical_lines(lines)
 
-        diff_x = [0, img_width]
+        # diff_x = [0, img_width]
+        diff_x = []
 
         for vertical_line in vertical_lines:
             rho, theta = vertical_line[0]
 
-            if not self.similar_line_exists(rho, diff_x, 5):
+            if not self.similar_line_exists(rho, diff_x, 25):
                 diff_x.append(rho)
 
         diff_x = sorted(diff_x)
@@ -177,7 +184,7 @@ class TransferPoints:
         # pass
 
     def fetch_avg_horizontal_line_dist(self, lines, img_height):
-
+        """
         horizontal_lines = self.filter_horizontal_lines(lines)
 
         diff_x = []
@@ -193,8 +200,9 @@ class TransferPoints:
         avg_gap = self.get_avg_diff(diff_x)
 
         return avg_gap
+        """
 
-        # return img_height
+        return img_height
 
     def fetch_tranfer_point_coord(self, bbox_coords, height_ratio,
                                   width_ratio, x_offset):
@@ -234,7 +242,11 @@ class TransferPoints:
 
         bbox_coords = json.load(open(bbox_file))
 
-        transfer_coords = self.fetch_tranfer_point_coord(bbox_coords, height_ratio, width_ratio, self.template_vertical_gap*2)
+        # transfer_coords = self.fetch_tranfer_point_coord(bbox_coords, height_ratio, width_ratio, self.template_vertical_gap*2)
+        transfer_coords = self.fetch_tranfer_point_coord(bbox_coords,
+                                                         height_ratio,
+                                                         width_ratio,
+                                                         self.template_vertical_gap * 2)
 
         birds_eye_img = self.plot_points(self.template_image, transfer_coords)
         cv2.imwrite("output_images/birds_eye_img.png", birds_eye_img)
@@ -245,6 +257,6 @@ if __name__ == "__main__":
     transfer_points = TransferPoints('input_images/birds_eye_view_field.png')
     transfer_points.transfer_points('output_images/warped_image.png',
                                     'perspective_transformation/'
-                                    'rotated_bbox.json')
+                                    'warped_output_points.json')
 
     # transfer_points.fetch_image_dim()
