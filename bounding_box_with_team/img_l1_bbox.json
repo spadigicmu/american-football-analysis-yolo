@@ -1,0 +1,130 @@
+{
+    "predictions": [
+        {
+            "x": 228,
+            "y": 198,
+            "width": 12,
+            "height": 46,
+            "class": "LB",
+            "confidence": 0.821,
+            "team": 1
+        },
+        {
+            "x": 242.5,
+            "y": 71,
+            "width": 13,
+            "height": 40,
+            "class": "SKILL",
+            "confidence": 0.82,
+            "team": 0
+        },
+        {
+            "x": 216.5,
+            "y": 156,
+            "width": 11,
+            "height": 42,
+            "class": "LB",
+            "confidence": 0.809,
+            "team": 1
+        },
+        {
+            "x": 307.5,
+            "y": 275,
+            "width": 13,
+            "height": 54,
+            "class": "DB",
+            "confidence": 0.793,
+            "team": 1
+        },
+        {
+            "x": 288,
+            "y": 185.5,
+            "width": 16,
+            "height": 31,
+            "class": "CENTER",
+            "confidence": 0.778,
+            "team": 0
+        },
+        {
+            "x": 112,
+            "y": 162.5,
+            "width": 12,
+            "height": 43,
+            "class": "DB",
+            "confidence": 0.748,
+            "team": 1
+        },
+        {
+            "x": 352.5,
+            "y": 163.5,
+            "width": 11,
+            "height": 55,
+            "class": "QB",
+            "confidence": 0.717,
+            "team": 0
+        },
+        {
+            "x": 284.5,
+            "y": 127,
+            "width": 15,
+            "height": 18,
+            "class": "SKILL",
+            "confidence": 0.689,
+            "team": 0
+        },
+        {
+            "x": 328.5,
+            "y": 270,
+            "width": 17,
+            "height": 50,
+            "class": "SKILL",
+            "confidence": 0.677,
+            "team": 0
+        },
+        {
+            "x": 54,
+            "y": 248.5,
+            "width": 10,
+            "height": 53,
+            "class": "DB",
+            "confidence": 0.666,
+            "team": 1
+        },
+        {
+            "x": 278,
+            "y": 329.5,
+            "width": 12,
+            "height": 55,
+            "class": "DB",
+            "confidence": 0.608,
+            "team": 1
+        },
+        {
+            "x": 348,
+            "y": 132,
+            "width": 8,
+            "height": 28,
+            "class": "SKILL",
+            "confidence": 0.546,
+            "team": 0
+        },
+        {
+            "x": 141,
+            "y": 81.5,
+            "width": 10,
+            "height": 47,
+            "class": "DB",
+            "confidence": 0.537,
+            "team": 1
+        },
+        {
+            "x": 352.5,
+            "y": 278,
+            "width": 15,
+            "height": 52,
+            "class": "SKILL",
+            "confidence": 0.433,
+            "team": 0
+        }
+    ]
+}
