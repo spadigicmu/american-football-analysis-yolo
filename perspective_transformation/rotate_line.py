@@ -311,7 +311,7 @@ warped_player_positions = get_warped_points(M, player_positions_after_padding)
 # plot_points(warped, warped_player_positions)
 plot_points_colored(warped, warped_player_positions, bbox_file)
 write_to_json(warped_player_positions, "../bounding_box_with_team_warped/" +
-              bbox_file, bbox_file)
+              bbox_file_name, bbox_file)
 # print(angle)
 
 cv2.imwrite("../warped_images/" + img_name, warped)
