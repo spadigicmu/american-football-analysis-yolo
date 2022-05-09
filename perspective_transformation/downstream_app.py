@@ -9,6 +9,10 @@ from scipy import ndimage
 from scipy.spatial import distance
 
 
+
+img_path = "../input_images/img2.jpg"
+label_path = '../bounding_box_with_team/img2_bbox.json'
+
 '''
 
 Passing logic
@@ -46,7 +50,7 @@ Where are these defenders located wrt the receiver as in how well are they in po
 '''
 def get_bbox_list():
     # Opening JSON file
-    f = open('bbox_with_team.json')
+    f = open(label_path)
 
     # returns JSON object as
     # a dictionary
@@ -56,7 +60,7 @@ def get_bbox_list():
     # Create figure and axes
     fig, ax = plt.subplots()
     # Display the image
-    img = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
+    img = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
     ax.imshow(img)
     bbox_list = []
     qb = []
@@ -107,9 +111,9 @@ def get_teams(players):
 Plot the lines for possible players who can receive pass from QB
 '''
 def plot_projected_passes(img, qb, proj_players, plot_name="projected_passes.png"):
-    colors = [(255, 255, 255), (255,255,0),(128,0,128), (255,0,0)]
+    colors = [(255, 255, 255), (255,255,0),(128,0,128), (255,0,0), (0,255,0), (0,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255)]
     for i,player in enumerate(proj_players):      
-        color = colors[i] 
+        color = colors[0] 
         cv2.line(img, (int(float(qb[0])), int(float(qb[1]))), (int(float(player[0])), int(float((player[1])))), color, 1)
 
     cv2.imwrite("../output_images/" + plot_name, img)
@@ -144,7 +148,7 @@ def plot_top_tacklers(img, proj_players, top_tacklers, top_tacklers_dist):
     avg_tacklability = []
     for i,player in enumerate(proj_players):
         a = (int(float(player[0])), int(float((player[1]))))
-        color = colors[i]
+        color = colors[0]
         
         for j in range(3):
             top = top_tacklers[i][j]
@@ -198,12 +202,12 @@ def get_passer_prospects(team_a, team_b, qb, img):
     print("tacklability", tacklability)
     best_pass_position = argsort(tacklability, True)[0]
     a = (float(qb['x']), float(qb['y']))
-    orig_img = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
+    orig_img = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
 
     plot_projected_passes(orig_img, a, [proj_players[best_pass_position]], "best_pass.png")
 
 
-image = cv2.imread("../input_images/img1.jpg", cv2.IMREAD_UNCHANGED)
+image = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
 points, qb = get_bbox_list()
 team_a, team_b = get_teams(points) 
 print("team a", team_a)

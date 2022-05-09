@@ -1,0 +1,148 @@
+{
+    "predictions": [
+        {
+            "x": 244.5,
+            "y": 133.5,
+            "width": 13,
+            "height": 37,
+            "class": "SKILL",
+            "confidence": 0.807,
+            "team": 0
+        },
+        {
+            "x": 265.5,
+            "y": 109.5,
+            "width": 17,
+            "height": 39,
+            "class": "SKILL",
+            "confidence": 0.807,
+            "team": 0
+        },
+        {
+            "x": 275,
+            "y": 261.5,
+            "width": 12,
+            "height": 45,
+            "class": "SKILL",
+            "confidence": 0.786,
+            "team": 0
+        },
+        {
+            "x": 174.5,
+            "y": 227,
+            "width": 11,
+            "height": 38,
+            "class": "LB",
+            "confidence": 0.779,
+            "team": 1
+        },
+        {
+            "x": 155.5,
+            "y": 75,
+            "width": 13,
+            "height": 36,
+            "class": "DB",
+            "confidence": 0.776,
+            "team": 1
+        },
+        {
+            "x": 263.5,
+            "y": 161,
+            "width": 13,
+            "height": 40,
+            "class": "SKILL",
+            "confidence": 0.765,
+            "team": 0
+        },
+        {
+            "x": 222,
+            "y": 227.5,
+            "width": 16,
+            "height": 31,
+            "class": "CENTER",
+            "confidence": 0.75,
+            "team": 0
+        },
+        {
+            "x": 225.5,
+            "y": 288,
+            "width": 15,
+            "height": 36,
+            "class": "SKILL",
+            "confidence": 0.721,
+            "team": 0
+        },
+        {
+            "x": 280.5,
+            "y": 224.5,
+            "width": 9,
+            "height": 45,
+            "class": "QB",
+            "confidence": 0.675,
+            "team": 0
+        },
+        {
+            "x": 188,
+            "y": 117.5,
+            "width": 8,
+            "height": 43,
+            "class": "DB",
+            "confidence": 0.638,
+            "team": 1
+        },
+        {
+            "x": 130,
+            "y": 143,
+            "width": 10,
+            "height": 44,
+            "class": "DB",
+            "confidence": 0.637,
+            "team": 0
+        },
+        {
+            "x": 162.5,
+            "y": 266,
+            "width": 9,
+            "height": 46,
+            "class": "DB",
+            "confidence": 0.605,
+            "team": 0
+        },
+        {
+            "x": 299,
+            "y": 406.5,
+            "width": 14,
+            "height": 17,
+            "class": "DB",
+            "confidence": 0.591,
+            "team": 0
+        },
+        {
+            "x": 187.5,
+            "y": 116,
+            "width": 9,
+            "height": 42,
+            "class": "LB",
+            "confidence": 0.575,
+            "team": 1
+        },
+        {
+            "x": 194.5,
+            "y": 201.5,
+            "width": 9,
+            "height": 43,
+            "class": "LB",
+            "confidence": 0.507,
+            "team": 1
+        },
+        {
+            "x": 118.5,
+            "y": 306,
+            "width": 11,
+            "height": 52,
+            "class": "DB",
+            "confidence": 0.439,
+            "team": 1
+        }
+    ]
+}
