@@ -1,0 +1,96 @@
+{
+    "predictions": [
+        {
+            "x": 587.5,
+            "y": 222,
+            "width": 29,
+            "height": 66,
+            "class": "QB",
+            "confidence": 0.763,
+            "team": 0
+        },
+        {
+            "x": 266.5,
+            "y": 140.5,
+            "width": 25,
+            "height": 75,
+            "class": "LB",
+            "confidence": 0.597,
+            "team": 1
+        },
+        {
+            "x": 174,
+            "y": 194,
+            "width": 28,
+            "height": 68,
+            "class": "LB",
+            "confidence": 0.593,
+            "team": 1
+        },
+        {
+            "x": 479.5,
+            "y": 150.5,
+            "width": 33,
+            "height": 69,
+            "class": "SKILL",
+            "confidence": 0.565,
+            "team": 0
+        },
+        {
+            "x": 121.5,
+            "y": 115.5,
+            "width": 27,
+            "height": 63,
+            "class": "DB",
+            "confidence": 0.558,
+            "team": 1
+        },
+        {
+            "x": 14.5,
+            "y": 283.5,
+            "width": 29,
+            "height": 77,
+            "class": "DB",
+            "confidence": 0.553,
+            "team": 1
+        },
+        
+        {
+            "x": 14.5,
+            "y": 283.5,
+            "width": 29,
+            "height": 73,
+            "class": "SKILL",
+            "confidence": 0.503,
+            "team": 1
+        },
+        {
+            "x": 52,
+            "y": 225,
+            "width": 30,
+            "height": 82,
+            "class": "DB",
+            "confidence": 0.498,
+            "team": 1
+        },
+        {
+            "x": 579.5,
+            "y": 168,
+            "width": 29,
+            "height": 66,
+            "class": "SKILL",
+            "confidence": 0.491,
+            "team": 0
+        },
+        {
+            "x": 409.5,
+            "y": 188,
+            "width": 27,
+            "height": 52,
+            "class": "CENTER",
+            "confidence": 0.481,
+            "team": 0
+        }
+      
+    ]
+}

@@ -1,0 +1,94 @@
+{
+    "predictions": [
+        {
+            "x": 44.5,
+            "y": 275.5,
+            "width": 29,
+            "height": 79,
+            "class": "DB",
+            "confidence": 0.777,
+            "team": 1
+        },
+        {
+            "x": 215,
+            "y": 109.5,
+            "width": 22,
+            "height": 61,
+            "class": "LB",
+            "confidence": 0.707,
+            "team": 1
+        },
+        {
+            "x": 551.5,
+            "y": 177.5,
+            "width": 25,
+            "height": 65,
+            "class": "QB",
+            "confidence": 0.706,
+            "team": 0
+        },
+        {
+            "x": 386,
+            "y": 285.5,
+            "width": 34,
+            "height": 73,
+            "class": "SKILL",
+            "confidence": 0.696,
+            "team": 0
+        },
+        {
+            "x": 381.5,
+            "y": 160.5,
+            "width": 29,
+            "height": 45,
+            "class": "CENTER",
+            "confidence": 0.553,
+            "team": 0
+        },
+        {
+            "x": 351.5,
+            "y": 140.5,
+            "width": 29,
+            "height": 45,
+            "class": "SKILL",
+            "confidence": 0.553,
+            "team": 1
+        },
+        {
+            "x": 447,
+            "y": 107.5,
+            "width": 20,
+            "height": 65,
+            "class": "SKILL",
+            "confidence": 0.504,
+            "team": 0
+        },
+        {
+            "x": 215.5,
+            "y": 107,
+            "width": 23,
+            "height": 68,
+            "class": "SKILL",
+            "confidence": 0.501,
+            "team": 1
+        },
+        {
+            "x": 393,
+            "y": 53.5,
+            "width": 24,
+            "height": 43,
+            "class": "SKILL",
+            "confidence": 0.411,
+            "team": 0
+        },
+        {
+            "x": 426,
+            "y": 90.5,
+            "width": 22,
+            "height": 55,
+            "class": "SKILL",
+            "confidence": 0.4,
+            "team": 0
+        }
+    ]
+}

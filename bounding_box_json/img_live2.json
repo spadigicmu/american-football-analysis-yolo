@@ -1,0 +1,76 @@
+{
+    "predictions": [
+        {
+            "x": 210.5,
+            "y": 106.5,
+            "width": 23,
+            "height": 53,
+            "class": "SKILL",
+            "confidence": 0.751
+        },
+        {
+            "x": 548,
+            "y": 170.5,
+            "width": 26,
+            "height": 63,
+            "class": "QB",
+            "confidence": 0.703
+        },
+        {
+            "x": 381,
+            "y": 280,
+            "width": 34,
+            "height": 72,
+            "class": "SKILL",
+            "confidence": 0.689
+        },
+        {
+            "x": 379,
+            "y": 158,
+            "width": 26,
+            "height": 42,
+            "class": "CENTER",
+            "confidence": 0.619
+        },
+        {
+            "x": 329,
+            "y": 198,
+            "width": 26,
+            "height": 32,
+            "class": "SKILL",
+            "confidence": 0.619
+        },
+        {
+            "x": 329,
+            "y": 198,
+            "width": 26,
+            "height": 32,
+            "class": "SKILL",
+            "confidence": 0.619
+        },
+        {
+            "x": 388,
+            "y": 50,
+            "width": 22,
+            "height": 44,
+            "class": "SKILL",
+            "confidence": 0.587
+        },
+        {
+            "x": 40,
+            "y": 273.5,
+            "width": 30,
+            "height": 79,
+            "class": "DB",
+            "confidence": 0.576
+        },
+        {
+            "x": 124.5,
+            "y": 48,
+            "width": 21,
+            "height": 48,
+            "class": "DB",
+            "confidence": 0.444
+        }
+    ]
+}

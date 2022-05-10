@@ -11,8 +11,8 @@ import cv2
 import numpy as np
 from collections import Counter
 
-img_path = "../input_images/img_l1.jpg"
-label_path_prefix = "img_l1_bbox.json"
+img_path = "../input_images/img.jpg"
+label_path_prefix = "img_bbox.json"
 label_path = "../bounding_box_json/" + label_path_prefix
 
 
@@ -70,162 +70,27 @@ def get_bbox_list():
     return bbox_list, qb
 
 b_boxes, _ = get_bbox_list()
-# b_boxes = []
-# with open(label_path) as labels:
-#   for line in labels.readlines():
-#     box = line.strip().split(' ')[1:]
-#     box = [float(b) for b in box] 
-#     box[0] =  box[0] * width
-#     box[1] =  box[1] * height 
-#     box[2] =  box[2] * width
-#     box[3] =  box[3] * height  
-    
-#     print(box)
-#     b_boxes.append(box)
-
-
-# plot the bbox with image
-# Create figure and axes
-#fig, ax = plt.subplots()
-# Display the image
-#ax.imshow(img)
-#for box in b_boxes:
-  #cur_box = box
-  #print(cur_box)
-  # Create a Rectangle patch
-  #rect2 = patches.Rectangle((cur_box[0]-(cur_box[2]/2), cur_box[1]-(cur_box[3]/2)), cur_box[2], cur_box[3], linewidth=1, edgecolor='b', facecolor='none')
-  # Add the patch to the Axes
-  #ax.add_patch(rect2)
-
-#plt.show()
-
-# pallete = {'b': (0, 0, 128),
-#           'g': (0, 128, 0),
-#           'r': (255, 0, 0),
-#           'c': (0, 192, 192),
-#           'm': (192, 0, 192),
-#           'y': (192, 192, 0),
-#           'k': (0, 0, 0),
-#           'w': (255, 255, 255)}
-
-#N_CLUSTERS = 1
-
-# Find the closest color to the detected one based on the predefined palette
-def closest_color(list_of_colors, color):
-    colors = np.array(list_of_colors)
-    color = np.array(color)
-    distances = np.sqrt(np.sum((colors-color)**2,axis=1))
-    index_of_shortest = np.where(distances==np.amin(distances))
-    shortest_distance = colors[index_of_shortest]
-
-    return shortest_distance
-
-
-# def get_player_color(player_index ):
-#   # get one players image 
-
-#   cur_box = b_boxes[player_index]
-  
-#   startX = int(cur_box[0]-(cur_box[2]/2))
-#   startY = int(cur_box[1]-(cur_box[3]/2))
-#   endX = int(cur_box[0]+(cur_box[2]/2))
-#   endY = int(cur_box[1]+(cur_box[3]/2))
-
-#   player_image = img_tensor[:, startY:endY, startX:endX] 
-
-#   #plt.imshow(player_image.permute(1,2,0))
-#   #plt.show()
-#   # KMeans for clustering 
-#   n_colors = N_CLUSTERS
-#   kmeans = KMeans(n_clusters = n_colors, n_init = 20)
-
-#   #print("player before: ", player_image)
-#   player_image = player_image.reshape(3, -1).permute(1, 0)
-#   #print("player after: ", player_image)
-
-#   k_clusters = kmeans.fit(player_image * 255)
-
-#   # K-MEANS result
-#   centroid = kmeans.cluster_centers_
-#   labels = kmeans.labels_
-
-
-#   labels = list(labels)
-#   percent = []
-
-#   for i in range(len(centroid)):
-#       j = labels.count(i)
-#       j = j / len(labels)
-#       percent.append(j)
-
-#   #print("percent: ", percent)
-#   sorted_indices = np.argsort(percent)
-#   # Get the majority color 
-#   assigned_cluster = sorted_indices[-1] 
-#   #print("assigned cluster index", assigned_cluster) 
-#   detected_color = centroid[assigned_cluster]
-
-#   list_of_colors = list(pallete.values())
-#   assigned_color = closest_color(list_of_colors, detected_color)[0]
-#   assigned_color = (int(assigned_color[0]), int(assigned_color[1]), int(assigned_color[2]))
-#   # if assigned color is green then get the next color. 
-#   color_index = -2
-#   print("original color", assigned_color, assigned_color == (0, 128, 0))
-#   while (assigned_color == (192, 192, 0) and color_index <= 0):
-#     assigned_cluster = sorted_indices[color_index]
-#     color_index -= 1 
-#     print("assigned cluster index", assigned_cluster) 
-#     detected_color = centroid[assigned_cluster]
-
-#     list_of_colors = list(pallete.values())
-#     assigned_color = closest_color(list_of_colors, detected_color)[0]
-#     assigned_color = (int(assigned_color[0]), int(assigned_color[1]), int(assigned_color[2]))
-#   print("assigned_color: ", assigned_color)
-
-
-#   for k, v in pallete.items():
-#     if (v == assigned_color):
-#       color = k
-#       break
-
-#   rect2 = patches.Rectangle((cur_box[0]-(cur_box[2]/2), cur_box[1]-(cur_box[3]/2)), cur_box[2], cur_box[3], linewidth=3, edgecolor=color, facecolor='none')
-#   # Add the patch to the Axes
-#   ax.add_patch(rect2)
-#   if assigned_color == (0, 0, 0):
-#       assigned_color = (128, 128, 128)
-
-  #print(centroid)
-
-
-# fig, ax = plt.subplots(figsize=(15,15))
-# # Display the image
-# ax.imshow(img)
-# for i in range(14):
-#   get_player_color(i)
-
-#plt.show()
-
 
 pallete = {
-  #'Black': (0,0,0),
-  #'White': (255,255,255),
-  #'Red': (255,0,0),
+  'Black': (0,0,0),
+  'White': (255,255,255),
+  'Red': (255,0,0),
   'Lime': (0,255,0),
-  #'Blue': (0,0,255),
+  'Blue': (0,0,255),
   'Yellow': (255,255,0),
   'Cyan': (0,255,255),
   'Magenta': (255,0,255),
-  #'Silver': (192,192,192),
-  #'Gray': (128,128,128),
-  #'Maroon': (128,0,0),
-  #'Olive': (128,128,0),
-  #'Green': (0,128,0),
-  #'Purple': (128,0,128),
-  #'Teal': (0,128,128),
-  #'Navy': (0,0,128)
+  'Silver': (192,192,192),
+  'Gray': (128,128,128),
+  'Maroon': (128,0,0),
+  'Olive': (128,128,0),
+  'Green': (0,128,0),
+  'Purple': (128,0,128),
+  'Teal': (0,128,128),
+  'Navy': (0,0,128)
   }
 
-N_CLUSTERS = 1
+N_CLUSTERS = 3
 N_INDEX = -1
 def get_player_color(player_index):
   # get one players image 
@@ -319,8 +184,8 @@ def write_to_json(team_info, filepath=out_bb_path):
             og_json['predictions'][entry]['team'] = 1
 
     json_object = json.dumps(og_json, indent=4)
-    #with open(filepath, "w") as outfile:
-    #    outfile.write(json_object)
+    with open(filepath, "w") as outfile:
+        outfile.write(json_object)
 
 
 fig, ax = plt.subplots(figsize=(8,8))

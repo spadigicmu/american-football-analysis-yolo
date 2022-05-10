@@ -1,0 +1,103 @@
+{
+    "predictions": [
+        {
+            "x": 442,
+            "y": 208,
+            "width": 30,
+            "height": 78,
+            "class": "LB",
+            "confidence": 0.835,
+            "team": 1
+        },
+        {
+            "x": 401,
+            "y": 102.5,
+            "width": 26,
+            "height": 65,
+            "class": "LB",
+            "confidence": 0.77,
+            "team": 1
+        },
+        {
+            "x": 91.5,
+            "y": 216.5,
+            "width": 25,
+            "height": 77,
+            "class": "QB",
+            "confidence": 0.767,
+            "team": 0
+        },
+        {
+            "x": 476.5,
+            "y": 213,
+            "width": 31,
+            "height": 80,
+            "class": "LB",
+            "confidence": 0.767,
+            "team": 1
+        },
+        {
+            "x": 564.5,
+            "y": 105.5,
+            "width": 25,
+            "height": 67,
+            "class": "DB",
+            "confidence": 0.721,
+            "team": 1
+        },
+        {
+            "x": 763,
+            "y": 357.5,
+            "width": 30,
+            "height": 87,
+            "class": "DB",
+            "confidence": 0.656,
+            "team": 1
+        },
+        {
+            "x": 458,
+            "y": 153.5,
+            "width": 30,
+            "height": 65,
+            "class": "LB",
+            "confidence": 0.617,
+            "team": 1
+        },
+        {
+            "x": 235.5,
+            "y": 177.5,
+            "width": 33,
+            "height": 53,
+            "class": "SKILL",
+            "confidence": 0.464,
+            "team": 0
+        },
+        {
+            "x": 271,
+            "y": 211,
+            "width": 26,
+            "height": 54,
+            "class": "CENTER",
+            "confidence": 0.428,
+            "team": 0
+        },
+        {
+            "x": 279.5,
+            "y": 62.5,
+            "width": 31,
+            "height": 39,
+            "class": "SKILL",
+            "confidence": 0.42,
+            "team": 0
+        },
+        {
+            "x": 251,
+            "y": 411.5,
+            "width": 42,
+            "height": 65,
+            "class": "DB",
+            "confidence": 0.411,
+            "team": 0
+        }
+    ]
+}

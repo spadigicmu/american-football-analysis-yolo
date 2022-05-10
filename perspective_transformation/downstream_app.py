@@ -10,9 +10,9 @@ from scipy.spatial import distance
 
 
 
-img_path = "../input_images/img2.jpg"
-label_path = '../bounding_box_with_team/img2_bbox.json'
-
+img_path = "../input_images/img_live2.jpg"
+label_path = '../bounding_box_with_team/img_live2.json'
+prefix = "img_live2"
 '''
 
 Passing logic
@@ -61,6 +61,10 @@ def get_bbox_list():
     fig, ax = plt.subplots()
     # Display the image
     img = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
+    dim = (416, 416)
+  
+    # resize image
+    #img = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
     ax.imshow(img)
     bbox_list = []
     qb = []
@@ -111,12 +115,13 @@ def get_teams(players):
 Plot the lines for possible players who can receive pass from QB
 '''
 def plot_projected_passes(img, qb, proj_players, plot_name="projected_passes.png"):
-    colors = [(255, 255, 255), (255,255,0),(128,0,128), (255,0,0), (0,255,0), (0,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255)]
+    colors = [(0, 0, 153,255), (153,255,255,255),(255,255,255,255), (102,178,255,255),  (255,100,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255)]
     for i,player in enumerate(proj_players):      
-        color = colors[0] 
-        cv2.line(img, (int(float(qb[0])), int(float(qb[1]))), (int(float(player[0])), int(float((player[1])))), color, 1)
+        color = colors[i] 
+        #print("color ", color)
+        cv2.line(img, (int(float(qb[0])), int(float(qb[1]))), (int(float(player[0])), int(float((player[1])))), color, 2, cv2.LINE_AA)
 
-    cv2.imwrite("../output_images/" + plot_name, img)
+    cv2.imwrite("../output_images/" + prefix +"_"+ plot_name, img)
     return img 
 
 '''
@@ -144,19 +149,19 @@ def get_passable_players(qb, players, img):
 Plot the lines for possible tacklers 
 '''
 def plot_top_tacklers(img, proj_players, top_tacklers, top_tacklers_dist):
-    colors = [(255, 255, 255), (255,255,0),(128,0,128), (255,0,0)]
+    colors = [(0, 0, 153,255), (153,255,255,255),(255,255,255,255), (102,178,255,255),  (255,100,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255), (0,255,255)]
     avg_tacklability = []
     for i,player in enumerate(proj_players):
         a = (int(float(player[0])), int(float((player[1]))))
-        color = colors[0]
+        color = colors[i]
         
         for j in range(3):
             top = top_tacklers[i][j]
             b = (int(float(top[0])), int(float((top[1]))))
             #print(a,b)
-            cv2.line(img, a, b, color, 1)
+            cv2.line(img, a, b, color, 2, cv2.LINE_AA)
         avg_tacklability.append(sum(top_tacklers_dist[i])/len(top_tacklers_dist[i]))
-    cv2.imwrite("../output_images/tacklers.png", img)
+    cv2.imwrite("../output_images/" + prefix +"_"+ "tacklers.png", img)
     return img, avg_tacklability
 
 def argsort(seq, reversed = False):
@@ -203,11 +208,16 @@ def get_passer_prospects(team_a, team_b, qb, img):
     best_pass_position = argsort(tacklability, True)[0]
     a = (float(qb['x']), float(qb['y']))
     orig_img = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
-
+    dim = (416, 416)
+    # resize image
+    #orig_img = cv2.resize(orig_img, dim, interpolation = cv2.INTER_AREA)
     plot_projected_passes(orig_img, a, [proj_players[best_pass_position]], "best_pass.png")
 
 
 image = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
+dim = (416, 416)
+# resize image
+#image = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
 points, qb = get_bbox_list()
 team_a, team_b = get_teams(points) 
 print("team a", team_a)
